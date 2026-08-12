@@ -454,3 +454,21 @@ The container is designed to deploy to AWS App Runner, Render, or any container 
 - Portfolio visualization: heatmap renders with correct colors, P&L chart has data points
 - AI chat (mocked): send a message, receive a response, trade execution appears inline
 - SSE resilience: disconnect and verify reconnection
+
+## 13. Questions & Clarifications
+
+| # | Topic | Question / Note |
+|---|-------|-----------------|
+| 1 | **Great‑10 watchlist** | How are the 10 default tickers selected?  Are they hard‑coded or loaded from the DB on startup? |
+| 2 | **Meal‑shark line** | In the **Portfolio** section the `GET /api/portfolio` brief refers to “unrealized P&L” – is that **per‑position** or the **total**?  Clarify the response shape. |
+| 3 | **Sparkline accumulation** | The `Watchlist` description says sparkline “accumulates from SSE since page load.”  Do we need to store a history buffer?  The backend currently only has a price cache – a frontend‑side buffer may be enough, but confirm. |
+| 4 | **LLM‑mock deterministic responses** | What shape should the deterministic mock output be?  The macro says “deterministic mock responses” but the exact ready‑to‑use JSON schema isn’t provided.  Draft a minimal placeholder (e.g., always buy 10 units of the first watchlisted symbol). |
+| 5 | **API versioning** | API paths are currently simple (`/api/...`).  Are we planning to version them (e.g., `/api/v1/...`) for future evolution?  If not, note that future extensions will need a semantic‑bump strategy. |
+| 6 | **OpenRouter credentials** | `.env.RUNNER_KEY` is marked **required** but never else mentioned.  Should we add a placeholder for the key in a template `.env.example` for developers? |
+| 7 | **Testing coverage** | The **Unit Tests** section lists many expectations.  Do unit tests exist yet?  If not, perhaps a checklist of required tests should be added. |
+| 8 | **Connection‑status dot** | Where is the dot rendered?  The header UI spec mentions it, but no explicit endpoint or SSE event delivers a connectivity flag.  Is it purely a front‑end concern or tied to the SSE connection state? |
+| 9 | **Price cache TTL** | The background task writes to an in‑memory cache.  How long do stale prices live?  A TTL might be good to avoid drifting after a disconnection. |
+| 10 | **User‑id hard‑code** | All tables use a constant "default" user ID.  What happens if the app moves to multi‑user mode?  Should we add a migration path? |
+| 11 | **Duplicate watchlist** | The `watchlist` table has `UNIQUE (user_id, ticker)` which silently fails if the same ticker is added twice.  Should we expose a 409 on duplicate?  If not, a best‑practice is to handle the error on the front‑end. |
+| 12 | **Connection‑status dot location** | It's specified in UI but no API exposed.  Clarify that it should react to SSE connection state.
+
