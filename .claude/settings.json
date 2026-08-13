@@ -3,9 +3,13 @@
     "ANTHROPIC_BASE_URL": "http://localhost:4000",
     "ANTHROPIC_AUTH_TOKEN": "sk-test",
     "ANTHROPIC_MODEL": "primary",
-    "ANTHROPIC_SMALL_FAST_MODEL": "primary"
+    "ANTHROPIC_SMALL_FAST_MODEL": "primary",
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
   "enabledPlugins": {
-    "playwright@claude-plugins-official": true
-  }
+    "playwright@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "context7@claude-plugins-official": true
+  },
+  "teammateMode": "in-process"
 }
