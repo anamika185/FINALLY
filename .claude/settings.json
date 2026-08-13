@@ -6,10 +6,6 @@
     "ANTHROPIC_SMALL_FAST_MODEL": "primary"
   },
   "enabledPlugins": {
-    "ralph-loop@claude-plugins-official": true,
-    "frontend-design@claude-plugins-official": true,
-    "context7@claude-plugins-official": true,
-    "playwright@claude-plugins-official": true,
-    "independent-reviewer@AK-tools": true
+    "playwright@claude-plugins-official": true
   }
 }
